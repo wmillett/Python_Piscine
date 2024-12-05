@@ -4,13 +4,11 @@ ft_set = {"Hello", "tutu!"}
 ft_dict = {"Hello" : "titi!"}
 
 
-ft_list[1] = "world"
+ft_list[1] = "World"
 
 ft_tuple = (ft_tuple[0], "Germany")
 
-ft_set = list(ft_set)
-ft_set[0] = "Hello"
-ft_set[1] = "Berlin"
+ft_set = {"Berlin", "Hello"}
 
 ft_dict["Hello"] = "42Berlin"
 
