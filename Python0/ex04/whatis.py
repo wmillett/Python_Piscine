@@ -1,5 +1,6 @@
 import sys
 
+
 def check_conditions(args):
     if len(args) > 1:
         raise AssertionError("more than one argument is provided")
@@ -8,6 +9,7 @@ def check_conditions(args):
     except ValueError:
         raise AssertionError("argument is not an integer")
     return int_arg
+
 
 def main(args):
     try:
@@ -21,6 +23,7 @@ def main(args):
             
     except AssertionError as e:
         print(f"AssertionError: {e}")
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])

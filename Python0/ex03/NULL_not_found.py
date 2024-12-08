@@ -15,5 +15,5 @@ def NULL_not_found(object: any) -> int:
             return 1
         return 0
     except Exception as e:
-        print("Error: Unexpected issue occurred")
+        print("Error: Unexpected issue occurred: ", e)
         return 1
