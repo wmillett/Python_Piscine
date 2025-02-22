@@ -1,4 +1,5 @@
 import sys
+import ast
 
 
 def ft_filter(function, iterable):
@@ -32,14 +33,21 @@ def main(args):
         Filtered list.
     """
     try:
-        if args.size != 2:
+        if len(args) != 2:
             raise Exception("Usage: ft_filter(function, iterable)")
-        else:
-            ft_filter(args[0], args[1])
+
+        # Parse args safely using ast
+        function = ast.literal_eval(args[0]) if args[0] != "None" else None
+        iterable = ast.literal_eval(args[1])  # TODO change to make Lambda ok
+
+        # Execute and print
+        filtered = ft_filter(function, iterable)
+        print(list(filtered))
+        filtered = filter(function, iterable)
+        print(list(filtered))
     except Exception as e:
         print("Error: ", e)
         return 1
-    
 
 
 if __name__ == "__main__":
