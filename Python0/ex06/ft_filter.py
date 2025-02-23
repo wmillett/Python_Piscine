@@ -11,14 +11,12 @@ def ft_filter(function, iterable):
         iterable: An iterable (e.g., list, tuple) to filter.
 
     Returns:
-        An iterator that yields items from the iterable for which the function returns True.
+        An iterator that yields items from the iterable and returns True.
         If function is None, it filters out items that evaluate to False.
     """
     if function is None:
-        # If function is None, filter out falsy values
         return (item for item in iterable if item)
     else:
-        # Otherwise, apply the function to filter items
         return (item for item in iterable if function(item))
 
 
@@ -35,19 +33,13 @@ def main(args):
     try:
         if len(args) != 2:
             raise Exception("Usage: ft_filter(function, iterable)")
-
-        # Parse args safely using ast
-        function = ast.literal_eval(args[0]) if args[0] != "None" else None
-        iterable = ast.literal_eval(args[1])  # TODO change to make Lambda ok
-
-        # Execute and print
+        function = eval(args[0]) if args[0] != "None" else None
+        iterable = ast.literal_eval(args[1])
         filtered = ft_filter(function, iterable)
-        print(list(filtered))
-        filtered = filter(function, iterable)
-        print(list(filtered))
+        print(list(filtered))  # Ensure the output is a valid list
     except Exception as e:
-        print("Error: ", e)
-        return 1
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
 
 
 if __name__ == "__main__":
