@@ -14,5 +14,6 @@ def count_in_list(lst: list, item: str):
     """
     return lst.count(item)
 
+
 if __name__ == "__main__":
     count_in_list(sys.argv[1:])
