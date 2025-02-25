@@ -1,20 +1,14 @@
-from setuptools import setup, find_packages
+[project]
+name = "ft_package"
+version = "0.0.1"
+authors = [
+    { name = "Your Name", email = "example@email.com" }
+]
+description = "A short description of your package"
+readme = "README.md"
+requires-python = ">=3.6"
+dependencies = []  # List your dependencies here
 
-setup(
-    name="ft_package",
-    version="0.0.1",
-    author="wmillett",
-    author_email="your@email.com",
-    description="A simple example package",
-    long_description=open("README.md").read(),
-    long_description_content_type="text/markdown",
-    url="https://github.com/wmillett/Python_Piscine/Python0/ex09/ft_package",
-    packages=find_packages(),
-    install_requires=[],
-    classifiers=[
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent",
-    ],
-    python_requires='>=3.6',   # Python version requirement
-)
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
