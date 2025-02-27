@@ -11,10 +11,15 @@ else
     echo "Failed to install the package."
 fi
 
-pip list | grep ft_package
+if pip freeze | grep -q ft_package ; then
+    pip uninstall -y ft_package > /dev/null 2>&1
+    echo "Uninstalled the ft_package."
+fi
 
-echo "Uninstalling the ft_package method 1"
-pip uninstall ft_package -y
+if pip freeze | grep -q UNKNOWN ; then
+    pip uninstall -y UNKNOWN > /dev/null 2>&1
+    echo "Uninstalled the UNKNOWN package."
+fi
 
 echo "Installing the ft_package method 2"
 pip install ./ft_package/dist/ft_package-0.0.1-py3-none-any.whl
@@ -29,4 +34,4 @@ pip show -v ft_package
 
 echo "Running tests on the ft_package"
 python3 tester.py
-python3 clean.py
+./clean.sh
