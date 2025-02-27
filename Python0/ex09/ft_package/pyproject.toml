@@ -2,12 +2,16 @@
 name = "ft_package"
 version = "0.0.1"
 authors = [
-    { name = "Your Name", email = "example@email.com" }
+    { name = "wmillett", email = "example@email.com" }
 ]
-description = "A short description of your package"
+description = "A small list of basic functions"
 readme = "README.md"
+license = "MIT"
 requires-python = ">=3.6"
-dependencies = []  # List your dependencies here
+classifiers = [
+    "Programming Language :: Python :: 3"
+]
+dependencies = []
 
 [build-system]
 requires = ["setuptools>=42", "wheel"]
