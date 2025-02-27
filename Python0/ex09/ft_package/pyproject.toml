@@ -1,17 +1,26 @@
 [project]
 name = "ft_package"
 version = "0.0.1"
+description = "A small list of basic functions"
 authors = [
     { name = "wmillett", email = "example@email.com" }
 ]
-description = "A small list of basic functions"
+license = { text = "MIT" }
 readme = "README.md"
-license = "MIT"
 requires-python = ">=3.6"
 classifiers = [
     "Programming Language :: Python :: 3"
 ]
 dependencies = []
+
+[project.urls]
+homepage = "https://github.com/wmillett/Python_Piscine"
+
+[tool.pip]
+metadata-version = "2.1"
+installer = "pip"
+
+[project.entry-points]
 
 [build-system]
 requires = ["setuptools>=42", "wheel"]
