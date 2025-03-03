@@ -3,6 +3,13 @@ import matplotlib.pyplot as plt
 
 
 def main():
+    """
+    Load life expectancy data for Germany and plot it.
+    Args:
+        None
+    Returns:
+        None
+    """
     try:
         df = load("life_expectancy_years.csv")
         if df is None:
