@@ -1,6 +1,9 @@
 from load_csv import load
 import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
+import os
+import sys
 
 
 def convert_value(value):
@@ -13,22 +16,34 @@ def convert_value(value):
     """
     if isinstance(value, str):
         if value.endswith('k'):
-            return float(value[:-1]) * 1_000
+            return int(float(value[:-1]) * 1000)
         elif value.endswith('M'):
-            return float(value[:-1]) * 1_000_000
-    return float(value)
+            return int(float(value[:-1]) * 1000000)
+    return int(value)
 
 
-def main():
+def main(args):
     """
-    Compare the life expectancy and income for all countries for the year 1900.
+    Compare the life expectancy and income for all countries for the year year.
     Args:
-        None.
+        Year to compare GDP and life expectancy of all countries.
     Returns:
         None.
     """
+    if len(args) > 1:
+        print("Usage: python3 projection_life <year>")
+        return
+    if len(args) == 0:
+        args = ["1900"]
+    if not args[0].isdigit():
+        print("Please insert a year between 1800 and 2050")
+        return
     try:
-
+        year = int(args[0])
+        if year < 1800 or year > 2050:
+            print("Please insert a year between 1800 and 2050")
+            return
+        year = str(year)
         df_life_expectancy = load("life_expectancy_years.csv")
         if df_life_expectancy is None:
             raise ValueError("Failed to load life expectancy data")
@@ -39,26 +54,42 @@ def main():
 
         df_income.iloc[:, 1:] = df_income.iloc[:, 1:].map(convert_value)
 
-        life_expectancy_1900 = (df_life_expectancy[['country', '1900']]
-                                .rename(columns={'1900': 'Life Expectancy'}))
-        income_1900 = (df_income[['country', '1900']]
-                       .rename(columns={'1900': 'Income'}))
+        if year not in df_life_expectancy.columns:
+            raise ValueError(f"Year {year} not found in life_expectancy data.")
+        if year not in df_income.columns:
+            raise ValueError(f"Year {year} not found in GDP data.")
 
-        merged_df = pd.merge(life_expectancy_1900, income_1900, on='country')
+        life_expectancy_year = (df_life_expectancy[['country', year]]
+                                .rename(columns={year: 'Life Expectancy'}))
+        income_year = (df_income[['country', year]]
+                       .rename(columns={year: 'Income'}))
 
-        Gdp = 'Income'
-
+        merged_df = pd.merge(life_expectancy_year, income_year, on='country')
+        LE = 'Life Expectancy'
         plt.figure(figsize=(10, 6))
-        plt.scatter(merged_df[Gdp], merged_df['Life Expectancy'], alpha=0.5)
+        plt.scatter(merged_df['Income'], merged_df[LE], alpha=0.5)
 
-        plt.title("1900")
-        plt.xlabel("Gross domestic income")
+        plt.title(f"Life Expectancy vs Income ({year})")
+        plt.xlabel("Gross Domestic Income per Capita")
         plt.ylabel("Life Expectancy (Years)")
+        plt.yticks(np.arange(20, 101, 5))
+        # plt.xticks([])
+
+        # For debugging
+        pd.set_option('display.max_rows', None)
+        pd.set_option('display.max_columns', None)
+        pd.set_option('display.width', None)
+        with open('output.txt', 'w') as file:
+            print(merged_df, file=file)
+
         plt.show()
+
+        if os.path.exists("output.txt"):
+            os.remove("output.txt")
     except Exception as e:
         print(f"An error occurred: {e}")
         return None
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])
