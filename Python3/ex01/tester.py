@@ -14,4 +14,5 @@ print(Cersei.__str__)
 print(Cersei.is_alive)
 print("---")
 Jaine = Lannister.create_lannister("Jaine", True)
-print(f"Name : {Jaine.first_name, type(Jaine).__name__}, Alive : {Jaine.is_alive}")
+name_info = f"{Jaine.first_name}, {type(Jaine).__name__}"
+print(f"Name : {name_info}, Alive : {Jaine.is_alive}")
