@@ -14,53 +14,51 @@ class calculator:
 
     def __add__(self, scalar):
         """
-        Adds a scalar to each element of the vector.
+        Adds a scalar to each element of the vector and prints the result.
 
         Args:
             scalar (float): The scalar to add.
-
-        Returns:
-            calculator: A new calculator instance with the result.
         """
-        return calculator([x + scalar for x in self.vector])
+        result = calculator([x + scalar for x in self.vector])
+        print(result)
+        return result
 
     def __mul__(self, scalar):
         """
-        Multiplies each element of the vector by a scalar.
+        Multiplies each element of the vector by a scalar
+        and prints the result.
 
         Args:
             scalar (float): The scalar to multiply.
-
-        Returns:
-            calculator: A new calculator instance with the result.
         """
-        return calculator([x * scalar for x in self.vector])
+        result = calculator([x * scalar for x in self.vector])
+        print(result)
+        return result
 
     def __sub__(self, scalar):
         """
-        Subtracts a scalar from each element of the vector.
+        Subtracts a scalar from each element of the vector
+        and prints the result.
 
         Args:
             scalar (float): The scalar to subtract.
-
-        Returns:
-            calculator: A new calculator instance with the result.
         """
-        return calculator([x - scalar for x in self.vector])
+        result = calculator([x - scalar for x in self.vector])
+        print(result)
+        return result
 
     def __truediv__(self, scalar):
         """
-        Divides each element of the vector by a scalar.
+        Divides each element of the vector by a scalar and prints the result.
 
         Args:
             scalar (float): The scalar to divide by.
-
-        Returns:
-            calculator: A new calculator instance with the result.
         """
         if scalar == 0:
             raise ValueError("Cannot divide by zero.")
-        return calculator([x / scalar for x in self.vector])
+        result = calculator([x / scalar for x in self.vector])
+        print(result)
+        return result
 
     def __repr__(self):
         """
