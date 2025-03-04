@@ -12,7 +12,9 @@ class calculator:
             V1 (list of float): The first vector.
             V2 (list of float): The second vector.
         """
-        result = sum(float(x) * float(y) for x, y in zip(V1, V2))
+        result = 0
+        for x, y in zip(V1, V2):
+            result += float(x) * float(y)
         print(f"Dot product is: {result}")
 
     @staticmethod
