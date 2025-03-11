@@ -51,6 +51,14 @@ def outer(x: int | float, function) -> object:
     result = x
 
     def inner() -> float:
+        """
+        Inner function part of the outer function.
+
+        Args:
+            None.
+        Return:
+            float: result of function from outer.
+        """
         nonlocal result
         nonlocal count
         count += 1
